@@ -1,0 +1,43 @@
+﻿@model proekt.Models.Telefon
+@{
+    ViewBag.Title = "_ShowTelefon";
+}
+
+<div class="col-sm-6 col-lg-3 col-md-6 ">
+    <div class="container">
+        <h3><a href="/Telefon/Details/@Model.TelefonID">@Model.ImeTelefon</a></h3>
+        <div class="card" >
+            <img src="@Model.slika" style="height:150px;" />
+            <div class="caption">
+             
+              
+                <div class="card-body">
+                   
+                    <h3 > <label>Price</label>  $@Model.cena.ToString()</h3>
+                </div>
+                <div class="card-body">
+                    <a>@Html.ActionLink("Add to Card", "AddToShoppingCard", "ShoppingCard", new { id = Model.TelefonID }, new { @class = "btn btn-success" })</a>
+                    <a>@Html.ActionLink("Details", "Details", "Telefon", new { id = Model.TelefonID }, new { @class = "btn btn-success" })</a>
+                </div>
+
+
+            </div>
+        </div>
+       <style>
+           #telefon{
+               display:block;
+           }
+       </style>
+        
+    </div>
+  
+
+</div>
+@section scripts{
+    <script>
+       
+      
+   
+      
+    </script>
+}

@@ -1,0 +1,18 @@
+﻿@using proekt.ViewModels
+@model TelefonViewModel
+    @{
+
+    ViewBag.Title = "SearchPhone";
+}
+
+<h2>@Model.telefoni.Count() result</h2>
+<div class="row">
+    @foreach (var t in Model.telefoni)
+    {
+        @Html.Partial("_ShowTelefon", t);
+    }
+</div>
+<div class="btn btn-group">
+    <a>@Html.ActionLink("Show All Phones", "ShowAllTelefon", "Home", null, new { @class = "btn btn-primary" })</a>
+    <a>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn btn-primary" })</a> 
+ </div>

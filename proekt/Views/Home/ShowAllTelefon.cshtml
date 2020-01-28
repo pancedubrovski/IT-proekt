@@ -1,0 +1,76 @@
+﻿@using proekt.ViewModels,proekt.Models;
+@model TelefonViewModel
+
+
+@{
+    ViewBag.Title = "ShowAllTelefon";
+}
+
+<h2>ShowAllTelefon</h2>
+
+<div>
+    <div>
+        <label for="order-list" style="cursor:pointer">Order by</label>
+        <select id="order-list" class="from-control">
+            <option value="none">None</option>
+            <option value="price_desc">Price(highest)</option>
+            <option value="price">Price(lowest)</option>
+            <option value="ime">Name(A-Z)</option>
+            <option value="ime_desc">Name(Z-A)</option>
+            <option value="pro">Brend</option>
+        </select>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+            <nav class="navbar navbar-default">
+                <div class="navbar-header">
+                    <a class="navbar-brand">Brend</a>
+                </div>
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="~/Proizvoditels/Phone/1">Samsung</a></li>
+                        <li><a href="~/Proizvoditels/Phone/4">Apple Iphone</a></li>
+                        <li><a href="~/Proizvoditels/Phone/3">Huawei</a></li>
+                    </ul>
+                </div> 
+            </nav>
+         <!--   <ul style="height:300px;">
+                
+                <li><a class="btn-block list-unstyled" href="/Proizvoditels/Phone/1">Samsing</a></li>
+                <li><a class="btn-block btn-info list-unstyled" href="/Proizvoditels/Phone/3">Huawei</a></li>
+                <li><a class="btn-block btn-info list-unstyled"  href="/Proizvoditels/Phone/4">Apple</a></li>
+                
+            </ul>-->
+        </div>
+        <div class="col-lg-10">
+            <div class="row">
+              @foreach (var t in Model.telefoni)
+        {
+            
+                @Html.Partial("_ShowTelefon", t)
+            
+        }
+                </div>
+        </div>
+    </div>
+
+</div>
+@section scripts{
+  
+    
+    <script>
+        $(document).ready(function () {
+
+            $("#table1").dataTable();
+
+            $("select").on("change", function () {
+
+                document.location = "?sortOrder=" + this.value;
+            });
+
+
+
+           
+        });
+    </script>
+}

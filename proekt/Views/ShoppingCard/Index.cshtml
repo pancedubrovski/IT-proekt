@@ -1,0 +1,81 @@
+﻿@model proekt.ViewModels.ShoppingViewModel
+@{
+    ViewBag.Title = "Shopping Card";
+}
+
+<h2>Shopping Card</h2>
+
+
+<table class="table" id="phones">
+    <thead>
+        <tr>
+        <td>
+            Moblie
+        </td>
+        <td>Model</td>
+        <td>Price</td>
+        <td>Quanity</td>
+            <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.cardItems) {
+        <tr id="row-@item.Recordid">
+            <td>
+                <img src="@item.Telefon.slika" />
+            </td>
+            <td>
+                <a>@Html.ActionLink(item.Telefon.ImeTelefon,"Details","Telefon",new {id = item.TelefonId })</a>
+            </td>
+            <td>
+                @item.Telefon.cena<span> den.</span>
+            </td>
+            <td id="item-count-@item.Recordid">
+                @item.Count
+            </td>
+            <td>
+                <a class="btn btn-danger js-delete" id="remove" data-id="@item.Recordid">Remove item </a>                              
+            </td>
+        </tr>
+    }
+   </tbody>
+    <tfoot>
+        <tr>
+            <td>
+                <div id="card-total">
+                  <span>Total:</span>  @Model.cardTotla<span> den.</span>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<a>@Html.ActionLink("Check out","CheckOut","Orders",null,new {@class="btn btn-success" })</a>
+<a>@Html.ActionLink("Back to phones","ShowAllTelefon","Home",null,new {@class= "btn btn-default"})</a>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            
+            $("td .js-delete").click(function () {
+                    console.log("brise1");
+                    var recorToDelete = $(this).attr("data-id");
+                    console.log("brise");
+
+                    if (recorToDelete != '') {
+                        $.post("ShoppingCard/RemoveItem", { "id": recorToDelete },
+                            function (data) {
+                                console.log(data.ItemCount);
+                                if (data.ItemCount == 0) {
+                                    $('#row-' + data.DeleteId).fadeOut('slow');
+                                }
+                                else {
+                                    $('#item-count-' + data.DeleteId).text(data.ItemCount);
+                                }
+                                $("#card-total").text(data.Total);
+                            });
+                    }
+            });
+            $("#phones").dataTable();
+           
+        });
+    </script>
+    }

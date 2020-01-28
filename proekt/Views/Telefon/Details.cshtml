@@ -1,0 +1,114 @@
+﻿@model proekt.Models.Telefon
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<!--<div>
+    <h4>Telefon</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.prozvoditel.ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prozvoditel.ime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImeTelefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImeTelefon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cena)
+        </dd>
+
+        <img src="@Model.slika" style="height:300px;"/>
+    </dl>
+</div>-->
+<div class="row">
+    <div class="col-lg-4">
+        <img src="@Model.slika" style="height:300px" />
+    </div>
+    <div class="col-lg-4">
+       <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.prozvoditel.ime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prozvoditel.ime)
+        </dd>
+         <dt>
+            @Html.DisplayNameFor(model => model.ImeTelefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImeTelefon)
+        </dd>
+           <dt>
+            @Html.DisplayNameFor(model => model.procesor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.procesor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ekran)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ekran)
+        </dd>
+          <dt>
+            @Html.DisplayNameFor(model => model.kamera)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kamera)<span> MP</span>
+        </dd>
+           <dt>
+            @Html.DisplayNameFor(model => model.RAM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RAM)<span> GB</span>
+        </dd>
+           <dt>
+            @Html.DisplayNameFor(model => model.procesor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.procesor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cena)<span> den.</span>
+        </dd>
+
+      
+        </dl>
+    </div>
+</div>
+<p>
+    @if (User.IsInRole("Admin,Editor")) {
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TelefonID }) 
+                                                 }
+   <a> @Html.ActionLink("Back to List", "ShowAllTelefon", "Home",null,new {@class="btn " })</a>
+</p>

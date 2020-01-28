@@ -1,0 +1,60 @@
+﻿@model IEnumerable<proekt.Models.Proizvoditel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" id="proTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ime)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.proID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.proID }) |
+                @Html.ActionLink("Delete","Delete",new { id= item.proID})
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#proTable").dataTable();
+        /*    $("#proTable .js-delete").on("click", function () { 
+                var button = $(this);
+                console.log(button);
+           //  bootbox.confirm("areyou shure to delete",function(resul){
+          //  if(result){
+             $.ajax({
+                 url: "  api/Proizvoditels1/"+ button.attr("data-pro-id"),
+                 method: "DELETE",
+                  success: function(){
+                          table.row(button.parents("tr")).remove().draw();
+                 }
+             });
+         //   }
+            });
+
+
+        });
+        */
+     //   });
+      </script>
+}
